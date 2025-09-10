@@ -1,0 +1,502 @@
+[
+  {
+    "model": "products.category",
+    "pk": 1,
+    "fields": {
+      "name": "Electronics",
+      "slug": "electronics",
+      "description": "Electronic devices and gadgets",
+      "created_at": "2024-01-01T10:00:00Z"
+    }
+  },
+  {
+    "model": "products.category",
+    "pk": 2,
+    "fields": {
+      "name": "Books",
+      "slug": "books",
+      "description": "Books and literature",
+      "created_at": "2024-01-01T10:00:00Z"
+    }
+  },
+  {
+    "model": "products.category",
+    "pk": 3,
+    "fields": {
+      "name": "Clothing",
+      "slug": "clothing",
+      "description": "Clothes and accessories",
+      "created_at": "2024-01-01T10:00:00Z"
+    }
+  },
+  {
+    "model": "products.category",
+    "pk": 4,
+    "fields": {
+      "name": "Home & Garden",
+      "slug": "home-garden",
+      "description": "Home improvement and garden supplies",
+      "created_at": "2024-01-01T10:00:00Z"
+    }
+  },
+  {
+    "model": "products.category",
+    "pk": 5,
+    "fields": {
+      "name": "Sports & Outdoors",
+      "slug": "sports-outdoors",
+      "description": "Sports equipment and outdoor gear",
+      "created_at": "2024-01-01T10:00:00Z"
+    }
+  },
+  {
+    "model": "products.product",
+    "pk": 1,
+    "fields": {
+      "name": "iPhone 15 Pro",
+      "description": "The most advanced iPhone yet with titanium design, A17 Pro chip, and pro camera system",
+      "price": "999.00",
+      "category": 1,
+      "stock_quantity": 50,
+      "image_url": "https://via.placeholder.com/400x400/1f2937/ffffff?text=iPhone+15+Pro",
+      "is_active": true,
+      "created_at": "2024-01-15T10:00:00Z",
+      "updated_at": "2024-01-15T10:00:00Z"
+    }
+  },
+  {
+    "model": "products.product",
+    "pk": 2,
+    "fields": {
+      "name": "MacBook Pro 14\"",
+      "description": "Professional laptop with M3 chip, perfect for developers and creative professionals",
+      "price": "2499.00",
+      "category": 1,
+      "stock_quantity": 25,
+      "image_url": "https://via.placeholder.com/400x400/1f2937/ffffff?text=MacBook+Pro",
+      "is_active": true,
+      "created_at": "2024-01-16T10:00:00Z",
+      "updated_at": "2024-01-16T10:00:00Z"
+    }
+  },
+  {
+    "model": "products.product",
+    "pk": 3,
+    "fields": {
+      "name": "Python Programming: Complete Guide",
+      "description": "Comprehensive guide to Python programming from beginner to advanced level",
+      "price": "49.99",
+      "category": 2,
+      "stock_quantity": 100,
+      "image_url": "https://via.placeholder.com/400x400/3b82f6/ffffff?text=Python+Book",
+      "is_active": true,
+      "created_at": "2024-01-17T10:00:00Z",
+      "updated_at": "2024-01-17T10:00:00Z"
+    }
+  },
+  {
+    "model": "products.product",
+    "pk": 4,
+    "fields": {
+      "name": "AirPods Pro (3rd generation)",
+      "description": "Wireless earbuds with active noise cancellation and spatial audio",
+      "price": "249.00",
+      "category": 1,
+      "stock_quantity": 75,
+      "image_url": "https://via.placeholder.com/400x400/1f2937/ffffff?text=AirPods+Pro",
+      "is_active": true,
+      "created_at": "2024-01-18T10:00:00Z",
+      "updated_at": "2024-01-18T10:00:00Z"
+    }
+  },
+  {
+    "model": "products.product",
+    "pk": 5,
+    "fields": {
+      "name": "Classic White T-Shirt",
+      "description": "100% cotton classic fit t-shirt, perfect for everyday wear",
+      "price": "19.99",
+      "category": 3,
+      "stock_quantity": 200,
+      "image_url": "https://via.placeholder.com/400x400/f3f4f6/1f2937?text=T-Shirt",
+      "is_active": true,
+      "created_at": "2024-01-19T10:00:00Z",
+      "updated_at": "2024-01-19T10:00:00Z"
+    }
+  },
+  {
+    "model": "products.product",
+    "pk": 6,
+    "fields": {
+      "name": "Smart Home Hub",
+      "description": "Control all your smart devices from one central hub with voice commands",
+      "price": "129.99",
+      "category": 4,
+      "stock_quantity": 40,
+      "image_url": "https://via.placeholder.com/400x400/059669/ffffff?text=Smart+Hub",
+      "is_active": true,
+      "created_at": "2024-01-20T10:00:00Z",
+      "updated_at": "2024-01-20T10:00:00Z"
+    }
+  },
+  {
+    "model": "products.product",
+    "pk": 7,
+    "fields": {
+      "name": "JavaScript: The Definitive Guide",
+      "description": "Master modern JavaScript with this comprehensive reference book",
+      "price": "59.99",
+      "category": 2,
+      "stock_quantity": 80,
+      "image_url": "https://via.placeholder.com/400x400/f59e0b/ffffff?text=JS+Book",
+      "is_active": true,
+      "created_at": "2024-01-21T10:00:00Z",
+      "updated_at": "2024-01-21T10:00:00Z"
+    }
+  },
+  {
+    "model": "products.product",
+    "pk": 8,
+    "fields": {
+      "name": "Wireless Keyboard & Mouse Set",
+      "description": "Ergonomic wireless keyboard and mouse combo for comfortable computing",
+      "price": "89.99",
+      "category": 1,
+      "stock_quantity": 60,
+      "image_url": "https://via.placeholder.com/400x400/6366f1/ffffff?text=Keyboard+Set",
+      "is_active": true,
+      "created_at": "2024-01-22T10:00:00Z",
+      "updated_at": "2024-01-22T10:00:00Z"
+    }
+  },
+  {
+    "model": "products.product",
+    "pk": 9,
+    "fields": {
+      "name": "Premium Denim Jeans",
+      "description": "High-quality denim jeans with modern fit and premium finishing",
+      "price": "79.99",
+      "category": 3,
+      "stock_quantity": 120,
+      "image_url": "https://via.placeholder.com/400x400/1e40af/ffffff?text=Denim+Jeans",
+      "is_active": true,
+      "created_at": "2024-01-23T10:00:00Z",
+      "updated_at": "2024-01-23T10:00:00Z"
+    }
+  },
+  {
+    "model": "products.product",
+    "pk": 10,
+    "fields": {
+      "name": "LED Desk Lamp",
+      "description": "Adjustable LED desk lamp with multiple brightness levels and USB charging port",
+      "price": "39.99",
+      "category": 4,
+      "stock_quantity": 90,
+      "image_url": "https://via.placeholder.com/400x400/dc2626/ffffff?text=Desk+Lamp",
+      "is_active": true,
+      "created_at": "2024-01-24T10:00:00Z",
+      "updated_at": "2024-01-24T10:00:00Z"
+    }
+  },
+  {
+    "model": "products.product",
+    "pk": 11,
+    "fields": {
+      "name": "4K Webcam",
+      "description": "Ultra HD webcam with auto-focus and built-in microphone for professional video calls",
+      "price": "149.99",
+      "category": 1,
+      "stock_quantity": 35,
+      "image_url": "https://via.placeholder.com/400x400/7c3aed/ffffff?text=4K+Webcam",
+      "is_active": true,
+      "created_at": "2024-01-25T10:00:00Z",
+      "updated_at": "2024-01-25T10:00:00Z"
+    }
+  },
+  {
+    "model": "products.product",
+    "pk": 12,
+    "fields": {
+      "name": "React Development Handbook",
+      "description": "Learn React development with hooks, context, and modern patterns",
+      "price": "44.99",
+      "category": 2,
+      "stock_quantity": 65,
+      "image_url": "https://via.placeholder.com/400x400/0891b2/ffffff?text=React+Book",
+      "is_active": true,
+      "created_at": "2024-01-26T10:00:00Z",
+      "updated_at": "2024-01-26T10:00:00Z"
+    }
+  },
+  {
+    "model": "products.product",
+    "pk": 13,
+    "fields": {
+      "name": "Samsung Galaxy S24",
+      "description": "Latest Samsung flagship with advanced AI features and incredible camera system",
+      "price": "899.00",
+      "category": 1,
+      "stock_quantity": 30,
+      "image_url": "https://via.placeholder.com/400x400/1f2937/ffffff?text=Samsung+Galaxy",
+      "is_active": true,
+      "created_at": "2024-01-27T10:00:00Z",
+      "updated_at": "2024-01-27T10:00:00Z"
+    }
+  },
+  {
+    "model": "products.product",
+    "pk": 14,
+    "fields": {
+      "name": "iPad Pro 12.9\"",
+      "description": "Professional tablet with M2 chip and Apple Pencil support for creative work",
+      "price": "1099.00",
+      "category": 1,
+      "stock_quantity": 20,
+      "image_url": "https://via.placeholder.com/400x400/1f2937/ffffff?text=iPad+Pro",
+      "is_active": true,
+      "created_at": "2024-01-28T10:00:00Z",
+      "updated_at": "2024-01-28T10:00:00Z"
+    }
+  },
+  {
+    "model": "products.product",
+    "pk": 15,
+    "fields": {
+      "name": "Sony WH-1000XM5",
+      "description": "Premium noise-canceling wireless headphones with exceptional audio quality",
+      "price": "399.00",
+      "category": 1,
+      "stock_quantity": 45,
+      "image_url": "https://via.placeholder.com/400x400/1f2937/ffffff?text=Sony+Headphones",
+      "is_active": true,
+      "created_at": "2024-01-29T10:00:00Z",
+      "updated_at": "2024-01-29T10:00:00Z"
+    }
+  },
+  {
+    "model": "products.product",
+    "pk": 16,
+    "fields": {
+      "name": "Nintendo Switch OLED",
+      "description": "Gaming console with vibrant OLED display for home and portable gaming",
+      "price": "349.99",
+      "category": 1,
+      "stock_quantity": 25,
+      "image_url": "https://via.placeholder.com/400x400/e11d48/ffffff?text=Nintendo+Switch",
+      "is_active": true,
+      "created_at": "2024-01-30T10:00:00Z",
+      "updated_at": "2024-01-30T10:00:00Z"
+    }
+  },
+  {
+    "model": "products.product",
+    "pk": 17,
+    "fields": {
+      "name": "Django for Professionals",
+      "description": "Advanced Django web development guide with real-world projects",
+      "price": "39.99",
+      "category": 2,
+      "stock_quantity": 75,
+      "image_url": "https://via.placeholder.com/400x400/059669/ffffff?text=Django+Book",
+      "is_active": true,
+      "created_at": "2024-01-31T10:00:00Z",
+      "updated_at": "2024-01-31T10:00:00Z"
+    }
+  },
+  {
+    "model": "products.product",
+    "pk": 18,
+    "fields": {
+      "name": "Clean Code",
+      "description": "A handbook of agile software craftsmanship by Robert Martin",
+      "price": "42.99",
+      "category": 2,
+      "stock_quantity": 60,
+      "image_url": "https://via.placeholder.com/400x400/dc2626/ffffff?text=Clean+Code",
+      "is_active": true,
+      "created_at": "2024-02-01T10:00:00Z",
+      "updated_at": "2024-02-01T10:00:00Z"
+    }
+  },
+  {
+    "model": "products.product",
+    "pk": 19,
+    "fields": {
+      "name": "System Design Interview",
+      "description": "An insider's guide to ace the system design interview",
+      "price": "35.99",
+      "category": 2,
+      "stock_quantity": 55,
+      "image_url": "https://via.placeholder.com/400x400/7c3aed/ffffff?text=System+Design",
+      "is_active": true,
+      "created_at": "2024-02-02T10:00:00Z",
+      "updated_at": "2024-02-02T10:00:00Z"
+    }
+  },
+  {
+    "model": "products.product",
+    "pk": 20,
+    "fields": {
+      "name": "Nike Air Force 1",
+      "description": "Classic white sneakers for everyday wear, timeless design",
+      "price": "119.99",
+      "category": 3,
+      "stock_quantity": 85,
+      "image_url": "https://via.placeholder.com/400x400/000000/ffffff?text=Nike+Shoes",
+      "is_active": true,
+      "created_at": "2024-02-03T10:00:00Z",
+      "updated_at": "2024-02-03T10:00:00Z"
+    }
+  },
+  {
+    "model": "products.product",
+    "pk": 21,
+    "fields": {
+      "name": "Levi's 501 Jeans",
+      "description": "Original straight fit jeans, the gold standard of denim",
+      "price": "89.99",
+      "category": 3,
+      "stock_quantity": 100,
+      "image_url": "https://via.placeholder.com/400x400/1e40af/ffffff?text=Levis+Jeans",
+      "is_active": true,
+      "created_at": "2024-02-04T10:00:00Z",
+      "updated_at": "2024-02-04T10:00:00Z"
+    }
+  },
+  {
+    "model": "products.product",
+    "pk": 22,
+    "fields": {
+      "name": "Adidas Hoodie",
+      "description": "Comfortable cotton hoodie perfect for casual wear and workouts",
+      "price": "69.99",
+      "category": 3,
+      "stock_quantity": 70,
+      "image_url": "https://via.placeholder.com/400x400/1f2937/ffffff?text=Adidas+Hoodie",
+      "is_active": true,
+      "created_at": "2024-02-05T10:00:00Z",
+      "updated_at": "2024-02-05T10:00:00Z"
+    }
+  },
+  {
+    "model": "products.product",
+    "pk": 23,
+    "fields": {
+      "name": "Coffee Maker Pro",
+      "description": "Professional coffee machine with programmable features and built-in grinder",
+      "price": "199.99",
+      "category": 4,
+      "stock_quantity": 25,
+      "image_url": "https://via.placeholder.com/400x400/8b5cf6/ffffff?text=Coffee+Maker",
+      "is_active": true,
+      "created_at": "2024-02-06T10:00:00Z",
+      "updated_at": "2024-02-06T10:00:00Z"
+    }
+  },
+  {
+    "model": "products.product",
+    "pk": 24,
+    "fields": {
+      "name": "Robot Vacuum",
+      "description": "Smart robot vacuum with mapping, app control and auto-emptying base",
+      "price": "299.99",
+      "category": 4,
+      "stock_quantity": 15,
+      "image_url": "https://via.placeholder.com/400x400/059669/ffffff?text=Robot+Vacuum",
+      "is_active": true,
+      "created_at": "2024-02-07T10:00:00Z",
+      "updated_at": "2024-02-07T10:00:00Z"
+    }
+  },
+  {
+    "model": "products.product",
+    "pk": 25,
+    "fields": {
+      "name": "Air Purifier",
+      "description": "HEPA air purifier for large rooms with smart controls",
+      "price": "149.99",
+      "category": 4,
+      "stock_quantity": 20,
+      "image_url": "https://via.placeholder.com/400x400/0891b2/ffffff?text=Air+Purifier",
+      "is_active": true,
+      "created_at": "2024-02-08T10:00:00Z",
+      "updated_at": "2024-02-08T10:00:00Z"
+    }
+  },
+  {
+    "model": "products.product",
+    "pk": 26,
+    "fields": {
+      "name": "Yoga Mat Premium",
+      "description": "High-quality non-slip yoga mat for all types of exercise and meditation",
+      "price": "49.99",
+      "category": 5,
+      "stock_quantity": 50,
+      "image_url": "https://via.placeholder.com/400x400/ec4899/ffffff?text=Yoga+Mat",
+      "is_active": true,
+      "created_at": "2024-02-09T10:00:00Z",
+      "updated_at": "2024-02-09T10:00:00Z"
+    }
+  },
+  {
+    "model": "products.product",
+    "pk": 27,
+    "fields": {
+      "name": "Dumbbells Set",
+      "description": "Adjustable dumbbells set for home workouts, space-saving design",
+      "price": "159.99",
+      "category": 5,
+      "stock_quantity": 30,
+      "image_url": "https://via.placeholder.com/400x400/374151/ffffff?text=Dumbbells",
+      "is_active": true,
+      "created_at": "2024-02-10T10:00:00Z",
+      "updated_at": "2024-02-10T10:00:00Z"
+    }
+  },
+  {
+    "model": "products.product",
+    "pk": 28,
+    "fields": {
+      "name": "Resistance Bands Kit",
+      "description": "Complete resistance bands set with multiple resistance levels",
+      "price": "29.99",
+      "category": 5,
+      "stock_quantity": 80,
+      "image_url": "https://via.placeholder.com/400x400/f59e0b/ffffff?text=Resistance+Bands",
+      "is_active": true,
+      "created_at": "2024-02-11T10:00:00Z",
+      "updated_at": "2024-02-11T10:00:00Z"
+    }
+  },
+  {
+    "model": "products.product",
+    "pk": 29,
+    "fields": {
+      "name": "Gaming Mouse RGB",
+      "description": "High-precision gaming mouse with customizable RGB lighting",
+      "price": "59.99",
+      "category": 1,
+      "stock_quantity": 40,
+      "image_url": "https://via.placeholder.com/400x400/ef4444/ffffff?text=Gaming+Mouse",
+      "is_active": true,
+      "created_at": "2024-02-12T10:00:00Z",
+      "updated_at": "2024-02-12T10:00:00Z"
+    }
+  },
+  {
+    "model": "products.product",
+    "pk": 30,
+    "fields": {
+      "name": "Mechanical Keyboard",
+      "description": "Cherry MX Blue switches mechanical keyboard for typing enthusiasts",
+      "price": "129.99",
+      "category": 1,
+      "stock_quantity": 35,
+      "image_url": "https://via.placeholder.com/400x400/8b5cf6/ffffff?text=Mechanical+KB",
+      "is_active": true,
+      "created_at": "2024-02-13T10:00:00Z",
+      "updated_at": "2024-02-13T10:00:00Z"
+    }
+  }
+]
