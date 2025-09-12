@@ -55,6 +55,10 @@ class ProxyView(View):
 
         return None
 
+    def get_target_path(self, request):
+        """Формирование пути для целевого сервиса"""
+        return request.path
+
     def proxy_request(self, request, target_url):
         """Проксирование HTTP запроса"""
         try:
