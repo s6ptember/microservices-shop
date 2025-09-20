@@ -1,6 +1,7 @@
 from rest_framework import serializers
+from django.contrib.auth.password_validation import validate_password
+from django.core import exceptions
 from .models import User, UserProfile
-
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
@@ -30,13 +31,43 @@ class UserRegistrationSerializer(serializers.ModelSerializer):
         fields = ['email', 'username', 'first_name',
             'last_name', 'password', 'password_confirm']
 
+    def validate_email(self, value):
+        """Проверка уникальности email"""
+        if User.objects.filter(email=value).exists():
+            raise serializers.ValidationError("A user with this email already exists.")
+        return value
+
+    def validate_username(self, value):
+        """Проверка уникальности username"""
+        if User.objects.filter(username=value).exists():
+            raise serializers.ValidationError("A user with this username already exists.")
+        return value
+
+    def validate_password(self, value):
+        """Валидация пароля"""
+        try:
+            validate_password(value)
+        except exceptions.ValidationError as e:
+            raise serializers.ValidationError(list(e.messages))
+        return value
+
     def validate(self, attrs):
-        if attrs['password'] != attrs['password_confirm']:
-            raise serializers.ValidationError('Passwords do not match')
+        """Проверка совпадения паролей"""
+        if attrs.get('password') != attrs.get('password_confirm'):
+            raise serializers.ValidationError({
+                'password_confirm': 'Passwords do not match'
+            })
         return attrs
 
     def create(self, validated_data):
-        validated_data.pop('password_confirm')
+        """Создание пользователя"""
+        # Убираем password_confirm из данных
+        validated_data.pop('password_confirm', None)
+
+        # Создаем пользователя
         user = User.objects.create_user(**validated_data)
+
+        # Создаем профиль
         UserProfile.objects.create(user=user)
+
         return user

@@ -1,10 +1,10 @@
 <!-- frontend/src/views/ProfileView.vue -->
 <template>
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
     <!-- Header -->
     <div class="mb-8">
       <h1 class="text-3xl font-bold text-gray-900">My Profile</h1>
-      <p class="mt-1 text-gray-600">Manage your account settings and view your order history</p>
+      <p class="mt-2 text-sm text-gray-500">Manage your account settings and view your order history</p>
     </div>
 
     <div class="lg:grid lg:grid-cols-3 lg:gap-8">
@@ -16,10 +16,10 @@
             :key="tab.id"
             @click="activeTab = tab.id"
             :class="[
-              'w-full text-left px-3 py-2 rounded-md text-sm font-medium transition-colors',
+              'w-full text-left px-4 py-3 rounded-md text-sm font-medium transition-colors',
               activeTab === tab.id
                 ? 'bg-gray-900 text-white'
-                : 'text-gray-700 hover:bg-gray-100'
+                : 'text-gray-600 hover:bg-gray-100 hover:text-gray-900'
             ]"
           >
             <div class="flex items-center">
@@ -34,8 +34,8 @@
       <div class="mt-8 lg:mt-0 lg:col-span-2">
         <!-- Profile Information Tab -->
         <div v-if="activeTab === 'profile'" class="space-y-6">
-          <div class="bg-white rounded-lg border border-gray-200 p-6">
-            <h2 class="text-lg font-medium text-gray-900 mb-6">Personal Information</h2>
+          <div class="bg-white rounded-lg shadow-sm border border-gray-100 p-6">
+            <h2 class="text-lg font-semibold text-gray-900 mb-6">Personal Information</h2>
 
             <form @submit.prevent="updateProfile" class="space-y-6">
               <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -80,14 +80,14 @@
               />
 
               <div>
-                <label class="form-label">Address</label>
+                <label class="block text-sm font-semibold text-gray-900">Address</label>
                 <textarea
                   v-model="profileForm.address"
                   rows="3"
-                  class="form-input"
+                  class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-gray-900 focus:ring-gray-900"
                   placeholder="Enter your address"
                 ></textarea>
-                <p v-if="profileErrors.address" class="form-error">{{ profileErrors.address }}</p>
+                <p v-if="profileErrors.address" class="mt-1 text-sm text-red-600">{{ profileErrors.address }}</p>
               </div>
 
               <BaseInput
@@ -102,6 +102,7 @@
                   type="submit"
                   variant="primary"
                   :loading="updatingProfile"
+                  class="bg-gray-900 text-white hover:bg-gray-800"
                 >
                   Update Profile
                 </BaseButton>
@@ -112,9 +113,9 @@
 
         <!-- Order History Tab -->
         <div v-if="activeTab === 'orders'" class="space-y-6">
-          <div class="bg-white rounded-lg border border-gray-200">
-            <div class="px-6 py-4 border-b border-gray-200">
-              <h2 class="text-lg font-medium text-gray-900">Order History</h2>
+          <div class="bg-white rounded-lg shadow-sm border border-gray-100">
+            <div class="px-6 py-4 border-b border-gray-100">
+              <h2 class="text-lg font-semibold text-gray-900">Order History</h2>
             </div>
 
             <!-- Loading State -->
@@ -127,36 +128,36 @@
               <svg class="mx-auto h-12 w-12 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
               </svg>
-              <h3 class="mt-2 text-sm font-medium text-gray-900">No orders yet</h3>
-              <p class="mt-1 text-sm text-gray-500">Start shopping to see your orders here.</p>
+              <h3 class="mt-4 text-lg font-semibold text-gray-900">No orders yet</h3>
+              <p class="mt-2 text-sm text-gray-500">Start shopping to see your orders here.</p>
               <div class="mt-6">
-                <BaseButton variant="primary" @click="$router.push('/catalog')">
+                <BaseButton variant="primary" @click="$router.push('/catalog')" class="bg-gray-900 text-white hover:bg-gray-800">
                   Start Shopping
                 </BaseButton>
               </div>
             </div>
 
             <!-- Orders List -->
-            <div v-else class="divide-y divide-gray-200">
+            <div v-else class="divide-y divide-gray-100">
               <div
                 v-for="order in orders"
                 :key="order.id"
-                class="p-6"
+                class="p-6 hover:bg-gray-50 transition-colors"
               >
                 <div class="flex items-center justify-between mb-4">
                   <div>
-                    <h3 class="text-sm font-medium text-gray-900">
+                    <h3 class="text-sm font-semibold text-gray-900">
                       Order #{{ order.id }}
                     </h3>
-                    <p class="text-sm text-gray-500">
+                    <p class="text-sm text-gray-500 mt-1">
                       Placed on {{ formatDate(order.created_at) }}
                     </p>
                   </div>
                   <div class="text-right">
-                    <p class="text-sm font-medium text-gray-900">
+                    <p class="text-sm font-semibold text-gray-900">
                       ${{ formatPrice(order.total_amount) }}
                     </p>
-                    <span :class="getStatusClasses(order.status)">
+                    <span :class="getStatusClasses(order.status)" class="inline-block px-3 py-1 rounded-full text-sm font-medium">
                       {{ getStatusText(order.status) }}
                     </span>
                   </div>
@@ -169,21 +170,21 @@
                     class="flex items-center space-x-4"
                   >
                     <div class="flex-shrink-0">
-                      <div class="w-10 h-10 bg-gray-200 rounded-lg flex items-center justify-center">
+                      <div class="w-10 h-10 bg-gray-100 rounded-md flex items-center justify-center">
                         <svg class="w-6 h-6 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4-8-4m16 0v10l-8 4-8-4V7" />
                         </svg>
                       </div>
                     </div>
                     <div class="flex-1 min-w-0">
-                      <p class="text-sm font-medium text-gray-900 truncate">
+                      <p class="text-sm font-semibold text-gray-900 truncate">
                         {{ item.product_name }}
                       </p>
-                      <p class="text-sm text-gray-500">
+                      <p class="text-sm text-gray-500 mt-1">
                         Qty: {{ item.quantity }} × ${{ formatPrice(item.price) }}
                       </p>
                     </div>
-                    <div class="text-sm font-medium text-gray-900">
+                    <div class="text-sm font-semibold text-gray-900">
                       ${{ formatPrice(item.subtotal) }}
                     </div>
                   </div>
@@ -194,6 +195,7 @@
                     variant="outline"
                     size="sm"
                     @click="viewOrder(order.id)"
+                    class="border-gray-900 text-gray-900 hover:bg-gray-900 hover:text-white"
                   >
                     View Details
                   </BaseButton>
@@ -205,8 +207,8 @@
 
         <!-- Security Tab -->
         <div v-if="activeTab === 'security'" class="space-y-6">
-          <div class="bg-white rounded-lg border border-gray-200 p-6">
-            <h2 class="text-lg font-medium text-gray-900 mb-6">Change Password</h2>
+          <div class="bg-white rounded-lg shadow-sm border border-gray-100 p-6">
+            <h2 class="text-lg font-semibold text-gray-900 mb-6">Change Password</h2>
 
             <form @submit.prevent="changePassword" class="space-y-6">
               <BaseInput
@@ -239,6 +241,7 @@
                   type="submit"
                   variant="primary"
                   :loading="changingPassword"
+                  class="bg-gray-900 text-white hover:bg-gray-800"
                 >
                   Change Password
                 </BaseButton>
@@ -249,13 +252,13 @@
 
         <!-- Settings Tab -->
         <div v-if="activeTab === 'settings'" class="space-y-6">
-          <div class="bg-white rounded-lg border border-gray-200 p-6">
-            <h2 class="text-lg font-medium text-gray-900 mb-6">Preferences</h2>
+          <div class="bg-white rounded-lg shadow-sm border border-gray-100 p-6">
+            <h2 class="text-lg font-semibold text-gray-900 mb-6">Preferences</h2>
 
             <div class="space-y-6">
               <!-- Email Notifications -->
               <div>
-                <h3 class="text-sm font-medium text-gray-900 mb-3">Email Notifications</h3>
+                <h3 class="text-sm font-semibold text-gray-900 mb-3">Email Notifications</h3>
                 <div class="space-y-3">
                   <label class="flex items-start">
                     <input
@@ -264,7 +267,7 @@
                       class="mt-1 rounded border-gray-300 text-gray-900 focus:ring-gray-900"
                     >
                     <div class="ml-3">
-                      <div class="text-sm text-gray-900">Order updates</div>
+                      <div class="text-sm font-semibold text-gray-900">Order updates</div>
                       <div class="text-sm text-gray-500">Get notified about order status changes</div>
                     </div>
                   </label>
@@ -276,7 +279,7 @@
                       class="mt-1 rounded border-gray-300 text-gray-900 focus:ring-gray-900"
                     >
                     <div class="ml-3">
-                      <div class="text-sm text-gray-900">Promotions and offers</div>
+                      <div class="text-sm font-semibold text-gray-900">Promotions and offers</div>
                       <div class="text-sm text-gray-500">Receive promotional emails and special offers</div>
                     </div>
                   </label>
@@ -288,7 +291,7 @@
                       class="mt-1 rounded border-gray-300 text-gray-900 focus:ring-gray-900"
                     >
                     <div class="ml-3">
-                      <div class="text-sm text-gray-900">Newsletter</div>
+                      <div class="text-sm font-semibold text-gray-900">Newsletter</div>
                       <div class="text-sm text-gray-500">Stay updated with our latest news and products</div>
                     </div>
                   </label>
@@ -297,7 +300,7 @@
 
               <!-- Privacy Settings -->
               <div>
-                <h3 class="text-sm font-medium text-gray-900 mb-3">Privacy</h3>
+                <h3 class="text-sm font-semibold text-gray-900 mb-3">Privacy</h3>
                 <div class="space-y-3">
                   <label class="flex items-start">
                     <input
@@ -306,7 +309,7 @@
                       class="mt-1 rounded border-gray-300 text-gray-900 focus:ring-gray-900"
                     >
                     <div class="ml-3">
-                      <div class="text-sm text-gray-900">Public profile</div>
+                      <div class="text-sm font-semibold text-gray-900">Public profile</div>
                       <div class="text-sm text-gray-500">Make your profile visible to other users</div>
                     </div>
                   </label>
@@ -318,7 +321,7 @@
                       class="mt-1 rounded border-gray-300 text-gray-900 focus:ring-gray-900"
                     >
                     <div class="ml-3">
-                      <div class="text-sm text-gray-900">Share data for improvements</div>
+                      <div class="text-sm font-semibold text-gray-900">Share data for improvements</div>
                       <div class="text-sm text-gray-500">Help us improve our services by sharing usage data</div>
                     </div>
                   </label>
@@ -330,6 +333,7 @@
                   variant="primary"
                   @click="saveSettings"
                   :loading="savingSettings"
+                  class="bg-gray-900 text-white hover:bg-gray-800"
                 >
                   Save Settings
                 </BaseButton>

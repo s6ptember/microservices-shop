@@ -1,12 +1,12 @@
 <!-- frontend/src/views/OrderDetailView.vue -->
 <template>
-  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
     <!-- Breadcrumb -->
     <nav class="flex mb-8" aria-label="Breadcrumb">
-      <ol class="inline-flex items-center space-x-1 md:space-x-3">
+      <ol class="inline-flex items-center space-x-2 md:space-x-4">
         <li class="inline-flex items-center">
-          <router-link to="/" class="text-gray-700 hover:text-gray-900 inline-flex items-center">
-            <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
+          <router-link to="/" class="text-gray-600 hover:text-gray-900 inline-flex items-center text-sm font-medium">
+            <svg class="w-4 h-4 mr-2 text-gray-600" fill="currentColor" viewBox="0 0 20 20">
               <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"></path>
             </svg>
             Home
@@ -14,37 +14,37 @@
         </li>
         <li>
           <div class="flex items-center">
-            <svg class="w-6 h-6 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
+            <svg class="w-5 h-5 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
               <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path>
             </svg>
-            <router-link to="/orders" class="ml-1 text-gray-700 hover:text-gray-900 md:ml-2">Orders</router-link>
+            <router-link to="/orders" class="ml-2 text-gray-600 hover:text-gray-900 text-sm font-medium">Orders</router-link>
           </div>
         </li>
         <li v-if="order">
           <div class="flex items-center">
-            <svg class="w-6 h-6 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
+            <svg class="w-5 h-5 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
               <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path>
             </svg>
-            <span class="ml-1 text-gray-500 md:ml-2">Order #{{ order.id }}</span>
+            <span class="ml-2 text-gray-500 text-sm font-medium">Order #{{ order.id }}</span>
           </div>
         </li>
       </ol>
     </nav>
 
     <!-- Loading State -->
-    <div v-if="loading" class="flex justify-center py-12">
+    <div v-if="loading" class="flex justify-center py-16">
       <LoadingSpinner size="lg" text="Loading order..." />
     </div>
 
     <!-- Error State -->
-    <div v-else-if="error" class="text-center py-12">
-      <div class="mx-auto flex items-center justify-center h-12 w-12 rounded-full bg-red-100">
+    <div v-else-if="error" class="text-center py-16">
+      <div class="mx-auto flex items-center justify-center h-12 w-12 rounded-full bg-red-50">
         <svg class="h-6 w-6 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.732 16.5c-.77.833.192 2.5 1.732 2.5z" />
         </svg>
       </div>
-      <h3 class="mt-2 text-sm font-medium text-gray-900">Order not found</h3>
-      <p class="mt-1 text-sm text-gray-500">{{ error }}</p>
+      <h3 class="mt-4 text-lg font-semibold text-gray-900">Order not found</h3>
+      <p class="mt-2 text-sm text-gray-500">{{ error }}</p>
       <div class="mt-6">
         <BaseButton variant="primary" @click="$router.push('/orders')">
           Back to Orders
@@ -53,19 +53,19 @@
     </div>
 
     <!-- Order Details -->
-    <div v-else-if="order" class="space-y-8">
+    <div v-else-if="order" class="space-y-6">
       <!-- Order Header -->
-      <div class="bg-white rounded-lg border border-gray-200 p-6">
+      <div class="bg-white rounded-lg shadow-sm border border-gray-100 p-6">
         <div class="flex items-center justify-between mb-6">
           <div>
-            <h1 class="text-3xl font-bold text-gray-900">Order #{{ order.id }}</h1>
-            <p class="text-gray-600">Placed on {{ formatDate(order.created_at) }}</p>
+            <h1 class="text-2xl font-bold text-gray-900">Order #{{ order.id }}</h1>
+            <p class="text-sm text-gray-500 mt-1">Placed on {{ formatDate(order.created_at) }}</p>
           </div>
           <div class="text-right">
-            <span :class="getStatusClasses(order.status)">
+            <span :class="getStatusClasses(order.status)" class="inline-block px-3 py-1 rounded-full text-sm font-medium">
               {{ getStatusText(order.status) }}
             </span>
-            <p class="text-2xl font-bold text-gray-900 mt-2">
+            <p class="text-xl font-semibold text-gray-900 mt-2">
               ${{ formatPrice(order.total_amount) }}
             </p>
           </div>
@@ -74,20 +74,20 @@
         <!-- Order Summary -->
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
           <div>
-            <h3 class="text-sm font-medium text-gray-900 mb-2">Customer Information</h3>
+            <h3 class="text-sm font-semibold text-gray-900 mb-2">Customer Information</h3>
             <div class="text-sm text-gray-600">
               <p>{{ order.user_name }}</p>
               <p>{{ order.user_email }}</p>
             </div>
           </div>
           <div>
-            <h3 class="text-sm font-medium text-gray-900 mb-2">Shipping Address</h3>
+            <h3 class="text-sm font-semibold text-gray-900 mb-2">Shipping Address</h3>
             <div class="text-sm text-gray-600">
               <p>{{ order.shipping_address }}</p>
             </div>
           </div>
           <div>
-            <h3 class="text-sm font-medium text-gray-900 mb-2">Order Summary</h3>
+            <h3 class="text-sm font-semibold text-gray-900 mb-2">Order Summary</h3>
             <div class="text-sm text-gray-600">
               <p>{{ order.items_count }} items</p>
               <p>{{ order.total_quantity }} total quantity</p>
@@ -97,42 +97,42 @@
       </div>
 
       <!-- Order Items -->
-      <div class="bg-white rounded-lg border border-gray-200">
-        <div class="px-6 py-4 border-b border-gray-200">
-          <h2 class="text-lg font-medium text-gray-900">Order Items</h2>
+      <div class="bg-white rounded-lg shadow-sm border border-gray-100">
+        <div class="px-6 py-4 border-b border-gray-100">
+          <h2 class="text-lg font-semibold text-gray-900">Order Items</h2>
         </div>
-        <div class="divide-y divide-gray-200">
+        <div class="divide-y divide-gray-100">
           <div
             v-for="item in order.items"
             :key="item.id"
-            class="p-6 flex items-center space-x-4"
+            class="p-6 flex items-center space-x-4 hover:bg-gray-50 transition-colors"
           >
             <div class="flex-shrink-0">
               <ProductImage
                 :product="getProductForItem(item)"
                 size="sm"
-                container-class="w-16 h-16 rounded-lg"
+                container-class="w-16 h-16 rounded-md"
               />
             </div>
             <div class="flex-1 min-w-0">
-              <h3 class="text-base font-medium text-gray-900">
+              <h3 class="text-base font-semibold text-gray-900">
                 {{ item.product_name }}
               </h3>
-              <p class="text-sm text-gray-500">
+              <p class="text-sm text-gray-500 mt-1">
                 ${{ formatPrice(item.price) }} × {{ item.quantity }}
               </p>
             </div>
-            <div class="text-base font-medium text-gray-900">
+            <div class="text-base font-semibold text-gray-900">
               ${{ formatPrice(item.subtotal) }}
             </div>
           </div>
         </div>
 
         <!-- Order Total -->
-        <div class="px-6 py-4 border-t border-gray-200 bg-gray-50">
+        <div class="px-6 py-4 border-t border-gray-100 bg-gray-50">
           <div class="flex justify-end">
             <div class="text-right">
-              <p class="text-base font-medium text-gray-900">
+              <p class="text-base font-semibold text-gray-900">
                 Total: ${{ formatPrice(order.total_amount) }}
               </p>
             </div>
@@ -145,6 +145,7 @@
         <BaseButton
           variant="outline"
           @click="$router.push('/orders')"
+          class="border-gray-900 text-gray-900 hover:bg-gray-900 hover:text-white"
         >
           Back to Orders
         </BaseButton>
@@ -155,12 +156,14 @@
             variant="outline"
             @click="cancelOrder"
             :loading="cancelling"
+            class="border-gray-900 text-gray-900 hover:bg-gray-900 hover:text-white"
           >
             Cancel Order
           </BaseButton>
           <BaseButton
             variant="primary"
             @click="reorder"
+            class="bg-gray-900 text-white hover:bg-gray-800"
           >
             Reorder Items
           </BaseButton>

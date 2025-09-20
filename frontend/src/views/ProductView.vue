@@ -1,12 +1,12 @@
 <!-- frontend/src/views/ProductView.vue -->
 <template>
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
     <!-- Breadcrumb -->
     <nav class="flex mb-8" aria-label="Breadcrumb">
-      <ol class="inline-flex items-center space-x-1 md:space-x-3">
+      <ol class="inline-flex items-center space-x-2 md:space-x-4">
         <li class="inline-flex items-center">
-          <router-link to="/" class="text-gray-700 hover:text-gray-900 inline-flex items-center">
-            <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
+          <router-link to="/" class="text-gray-600 hover:text-gray-900 inline-flex items-center text-sm font-medium">
+            <svg class="w-4 h-4 mr-2 text-gray-600" fill="currentColor" viewBox="0 0 20 20">
               <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"></path>
             </svg>
             Home
@@ -14,39 +14,39 @@
         </li>
         <li>
           <div class="flex items-center">
-            <svg class="w-6 h-6 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
+            <svg class="w-5 h-5 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
               <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path>
             </svg>
-            <router-link to="/catalog" class="ml-1 text-gray-700 hover:text-gray-900 md:ml-2">Catalog</router-link>
+            <router-link to="/catalog" class="ml-2 text-gray-600 hover:text-gray-900 text-sm font-medium">Catalog</router-link>
           </div>
         </li>
         <li v-if="product">
           <div class="flex items-center">
-            <svg class="w-6 h-6 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
+            <svg class="w-5 h-5 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
               <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path>
             </svg>
-            <span class="ml-1 text-gray-500 md:ml-2">{{ product.name }}</span>
+            <span class="ml-2 text-gray-500 text-sm font-medium">{{ product.name }}</span>
           </div>
         </li>
       </ol>
     </nav>
 
     <!-- Loading State -->
-    <div v-if="loading" class="flex justify-center py-12">
+    <div v-if="loading" class="flex justify-center py-16">
       <LoadingSpinner size="lg" text="Loading product..." />
     </div>
 
     <!-- Error State -->
-    <div v-else-if="error" class="text-center py-12">
-      <div class="mx-auto flex items-center justify-center h-12 w-12 rounded-full bg-red-100">
+    <div v-else-if="error" class="text-center py-16">
+      <div class="mx-auto flex items-center justify-center h-12 w-12 rounded-full bg-red-50">
         <svg class="h-6 w-6 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.732 16.5c-.77.833.192 2.5 1.732 2.5z" />
         </svg>
       </div>
-      <h3 class="mt-2 text-sm font-medium text-gray-900">Product not found</h3>
-      <p class="mt-1 text-sm text-gray-500">{{ error }}</p>
+      <h3 class="mt-4 text-lg font-semibold text-gray-900">Product not found</h3>
+      <p class="mt-2 text-sm text-gray-500">{{ error }}</p>
       <div class="mt-6">
-        <BaseButton variant="primary" @click="$router.push('/catalog')">
+        <BaseButton variant="primary" @click="$router.push('/catalog')" class="bg-gray-900 text-white hover:bg-gray-800">
           Back to Catalog
         </BaseButton>
       </div>
@@ -57,9 +57,9 @@
       <!-- Image Gallery -->
       <div class="flex flex-col-reverse">
         <!-- Image selector -->
-        <div class="hidden mt-6 w-full max-w-2xl mx-auto sm:block lg:max-w-none">
-          <div class="grid grid-cols-4 gap-6">
-            <div v-for="i in 4" :key="i" class="relative h-24 bg-white rounded-md flex items-center justify-center text-sm font-medium uppercase text-gray-900 cursor-pointer hover:bg-gray-50 focus:outline-none focus:ring focus:ring-offset-4 focus:ring-gray-500">
+        <div class="mt-6 w-full max-w-2xl mx-auto sm:block lg:max-w-none">
+          <div class="grid grid-cols-4 gap-4">
+            <div v-for="i in 4" :key="i" class="relative h-24 bg-white rounded-md flex items-center justify-center text-sm font-medium uppercase text-gray-900 cursor-pointer hover:bg-gray-50 transition-colors focus:outline-none focus:ring-2 focus:ring-gray-900 focus:ring-offset-2">
               <span class="absolute inset-0 rounded-md overflow-hidden">
                 <img :src="product.image_url || '/placeholder-product.jpg'" alt="" class="w-full h-full object-center object-cover">
               </span>
@@ -71,25 +71,25 @@
           <ProductImage
             :product="product"
             size="xl"
-            container-class="w-full h-96 object-center object-cover sm:rounded-lg"
+            container-class="w-full h-96 object-center object-cover rounded-lg"
           />
         </div>
       </div>
 
       <!-- Product info -->
       <div class="mt-10 px-4 sm:px-0 sm:mt-16 lg:mt-0">
-        <h1 class="text-3xl font-extrabold tracking-tight text-gray-900">{{ product.name }}</h1>
+        <h1 class="text-2xl font-bold text-gray-900">{{ product.name }}</h1>
 
         <div class="mt-3">
           <h2 class="sr-only">Product information</h2>
-          <p class="text-3xl text-gray-900">${{ formatPrice(product.price) }}</p>
+          <p class="text-2xl font-semibold text-gray-900">${{ formatPrice(product.price) }}</p>
         </div>
 
         <!-- Category -->
         <div class="mt-3">
           <router-link
             :to="`/catalog?category=${product.category}`"
-            class="text-sm text-gray-500 hover:text-gray-700"
+            class="text-sm text-gray-600 hover:text-gray-900 font-medium"
           >
             {{ product.category_name }}
           </router-link>
@@ -102,21 +102,21 @@
               <svg class="w-5 h-5 text-green-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
                 <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
               </svg>
-              <span class="text-green-600 font-medium">In Stock</span>
-              <span class="text-gray-500 ml-2">({{ product.stock_quantity }} available)</span>
+              <span class="text-green-600 font-semibold">In Stock</span>
+              <span class="text-gray-500 ml-2 text-sm">({{ product.stock_quantity }} available)</span>
             </div>
             <div v-else class="flex items-center">
               <svg class="w-5 h-5 text-red-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
                 <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd" />
               </svg>
-              <span class="text-red-600 font-medium">Out of Stock</span>
+              <span class="text-red-600 font-semibold">Out of Stock</span>
             </div>
           </div>
         </div>
 
         <div class="mt-6">
           <h3 class="sr-only">Description</h3>
-          <div class="text-base text-gray-700 space-y-6">
+          <div class="text-base text-gray-700 space-y-4">
             <p>{{ product.description }}</p>
           </div>
         </div>
@@ -125,7 +125,7 @@
           <!-- Quantity -->
           <div class="mt-8">
             <div class="flex items-center justify-between">
-              <h3 class="text-sm text-gray-900 font-medium">Quantity</h3>
+              <h3 class="text-sm font-semibold text-gray-900">Quantity</h3>
             </div>
 
             <div class="mt-2">
@@ -166,7 +166,7 @@
               type="submit"
               variant="primary"
               size="lg"
-              class="flex-1"
+              class="flex-1 bg-gray-900 text-white hover:bg-gray-800"
               :disabled="!product.is_in_stock"
               :loading="addingToCart"
             >
@@ -182,6 +182,7 @@
               variant="outline"
               size="lg"
               @click="toggleWishlist"
+              class="border-gray-900 text-gray-900 hover:bg-gray-900 hover:text-white"
             >
               <template #icon>
                 <svg class="w-5 h-5" :class="isInWishlist ? 'text-red-500' : ''" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -194,25 +195,25 @@
 
         <!-- Product details -->
         <section aria-labelledby="details-heading" class="mt-12">
-          <h2 id="details-heading" class="text-lg font-medium text-gray-900">Additional Details</h2>
+          <h2 id="details-heading" class="text-lg font-semibold text-gray-900">Additional Details</h2>
 
           <div class="mt-4 space-y-6">
-            <div class="border-t border-gray-200 pt-6">
+            <div class="border-t border-gray-100 pt-6">
               <dl class="grid grid-cols-1 gap-x-4 gap-y-6 sm:grid-cols-2">
                 <div>
-                  <dt class="text-sm font-medium text-gray-500">Category</dt>
+                  <dt class="text-sm font-semibold text-gray-500">Category</dt>
                   <dd class="mt-1 text-sm text-gray-900">{{ product.category_name }}</dd>
                 </div>
                 <div>
-                  <dt class="text-sm font-medium text-gray-500">Stock</dt>
+                  <dt class="text-sm font-semibold text-gray-500">Stock</dt>
                   <dd class="mt-1 text-sm text-gray-900">{{ product.stock_quantity }} units</dd>
                 </div>
                 <div>
-                  <dt class="text-sm font-medium text-gray-500">Status</dt>
+                  <dt class="text-sm font-semibold text-gray-500">Status</dt>
                   <dd class="mt-1 text-sm text-gray-900">{{ product.is_active ? 'Active' : 'Inactive' }}</dd>
                 </div>
                 <div>
-                  <dt class="text-sm font-medium text-gray-500">Added</dt>
+                  <dt class="text-sm font-semibold text-gray-500">Added</dt>
                   <dd class="mt-1 text-sm text-gray-900">{{ formatDate(product.created_at) }}</dd>
                 </div>
               </dl>

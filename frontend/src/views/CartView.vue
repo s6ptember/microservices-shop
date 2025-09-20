@@ -1,14 +1,14 @@
 <!-- frontend/src/views/CartView.vue -->
 <template>
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
     <!-- Header -->
-    <div class="flex items-center justify-between mb-8">
-      <h1 class="text-3xl font-bold text-gray-900">Shopping Cart</h1>
+    <div class="flex items-center justify-between mb-10">
+      <h1 class="text-4xl font-extrabold text-gray-900">Shopping Cart</h1>
       <router-link
         to="/catalog"
-        class="text-gray-600 hover:text-gray-900 flex items-center"
+        class="text-gray-600 hover:text-black flex items-center transition-colors duration-200"
       >
-        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16l-4-4m0 0l4-4m-4 4h18" />
         </svg>
         Continue Shopping
@@ -16,17 +16,17 @@
     </div>
 
     <!-- Loading State -->
-    <div v-if="loading" class="flex justify-center py-12">
+    <div v-if="loading" class="flex justify-center py-16">
       <LoadingSpinner size="lg" text="Loading cart..." />
     </div>
 
     <!-- Empty Cart -->
-    <div v-else-if="isEmpty" class="text-center py-12">
-      <svg class="mx-auto h-12 w-12 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <div v-else-if="isEmpty" class="text-center py-16 bg-white rounded-xl shadow-sm">
+      <svg class="mx-auto h-16 w-16 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4m0 0L7 13m0 0l-2.5 5M7 13l-2.5 5m0 0h10.5" />
       </svg>
-      <h3 class="mt-2 text-lg font-medium text-gray-900">Your cart is empty</h3>
-      <p class="mt-1 text-gray-500">Start adding some items to your cart!</p>
+      <h3 class="mt-3 text-xl font-semibold text-gray-900">Your cart is empty</h3>
+      <p class="mt-2 text-gray-500">Start adding some items to your cart!</p>
       <div class="mt-6">
         <BaseButton
           variant="primary"
@@ -41,14 +41,14 @@
     <div v-else class="lg:grid lg:grid-cols-12 lg:gap-8">
       <!-- Cart Items -->
       <div class="lg:col-span-8">
-        <div class="bg-white rounded-lg border border-gray-200">
-          <div class="px-6 py-4 border-b border-gray-200">
-            <h2 class="text-lg font-medium text-gray-900">
+        <div class="bg-white rounded-xl shadow-sm border border-gray-100">
+          <div class="px-6 py-5 border-b border-gray-100">
+            <h2 class="text-xl font-semibold text-gray-900">
               Cart Items ({{ totalItems }} {{ totalItems === 1 ? 'item' : 'items' }})
             </h2>
           </div>
 
-          <div class="divide-y divide-gray-200">
+          <div class="divide-y divide-gray-100">
             <div
               v-for="item in cartItems"
               :key="item.id"
@@ -59,7 +59,7 @@
                 <ProductImage
                   :product="getProductForItem(item)"
                   size="sm"
-                  container-class="w-20 h-20 rounded-lg"
+                  container-class="w-24 h-24 rounded-lg"
                 />
               </div>
 
@@ -67,10 +67,10 @@
               <div class="ml-6 flex-1">
                 <div class="flex items-start justify-between">
                   <div>
-                    <h3 class="text-base font-medium text-gray-900">
+                    <h3 class="text-lg font-semibold text-gray-900">
                       <router-link
                         :to="`/products/${item.product_id}`"
-                        class="hover:text-gray-700"
+                        class="hover:text-black transition-colors duration-200"
                       >
                         {{ item.product_name }}
                       </router-link>
@@ -82,23 +82,23 @@
                     <!-- Stock Warning -->
                     <div
                       v-if="item.product_info && item.quantity > item.product_info.stock_quantity"
-                      class="mt-2 flex items-center text-amber-600"
+                      class="mt-2 flex items-center text-amber-500"
                     >
-                      <svg class="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20">
+                      <svg class="w-5 h-5 mr-1.5" fill="currentColor" viewBox="0 0 20 20">
                         <path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd" />
                       </svg>
-                      <span class="text-xs">Only {{ item.product_info.stock_quantity }} left in stock</span>
+                      <span class="text-sm">Only {{ item.product_info.stock_quantity }} left in stock</span>
                     </div>
 
                     <!-- Price Change Warning -->
                     <div
                       v-if="item.product_info && item.price !== item.product_info.current_price"
-                      class="mt-2 flex items-center text-blue-600"
+                      class="mt-2 flex items-center text-blue-500"
                     >
-                      <svg class="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20">
+                      <svg class="w-5 h-5 mr-1.5" fill="currentColor" viewBox="0 0 20 20">
                         <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd" />
                       </svg>
-                      <span class="text-xs">
+                      <span class="text-sm">
                         Price changed to ${{ formatPrice(item.product_info.current_price) }}
                       </span>
                     </div>
@@ -107,26 +107,26 @@
                   <!-- Remove Button -->
                   <button
                     @click="removeItem(item.id)"
-                    class="ml-4 text-gray-400 hover:text-red-500 transition-colors"
+                    class="ml-4 text-gray-400 hover:text-red-500 transition-colors duration-200"
                     :disabled="updatingItems.has(item.id)"
                   >
                     <span class="sr-only">Remove</span>
-                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
                       <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd" />
                     </svg>
                   </button>
                 </div>
 
                 <!-- Quantity Controls -->
-                <div class="mt-4 flex items-center space-x-3">
+                <div class="mt-4 flex items-center space-x-4">
                   <label class="sr-only">Quantity</label>
-                  <div class="flex items-center border border-gray-300 rounded-md">
+                  <div class="flex items-center border border-gray-200 rounded-lg overflow-hidden">
                     <button
                       @click="updateQuantity(item.id, item.quantity - 1)"
                       :disabled="item.quantity <= 1 || updatingItems.has(item.id)"
-                      class="p-2 text-gray-500 hover:text-gray-700 disabled:opacity-50 disabled:cursor-not-allowed"
+                      class="p-2.5 text-gray-600 hover:text-black disabled:opacity-40 disabled:cursor-not-allowed transition-colors duration-200"
                     >
-                      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12H4" />
                       </svg>
                     </button>
@@ -137,22 +137,22 @@
                       type="number"
                       min="1"
                       :max="item.product_info?.stock_quantity || 999"
-                      class="w-16 text-center border-0 focus:ring-0 focus:border-0"
+                      class="w-16 text-center border-none focus:ring-0 focus:outline-none text-gray-900 text-sm"
                       :disabled="updatingItems.has(item.id)"
                     >
 
                     <button
                       @click="updateQuantity(item.id, item.quantity + 1)"
                       :disabled="updatingItems.has(item.id) || (item.product_info && item.quantity >= item.product_info.stock_quantity)"
-                      class="p-2 text-gray-500 hover:text-gray-700 disabled:opacity-50 disabled:cursor-not-allowed"
+                      class="p-2.5 text-gray-600 hover:text-black disabled:opacity-40 disabled:cursor-not-allowed transition-colors duration-200"
                     >
-                      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
                       </svg>
                     </button>
                   </div>
 
-                  <div class="flex items-center text-sm text-gray-500">
+                  <div class="flex items-center text-sm text-gray-600">
                     <span v-if="updatingItems.has(item.id)" class="flex items-center">
                       <div class="spinner mr-2"></div>
                       Updating...
@@ -181,9 +181,9 @@
 
       <!-- Order Summary -->
       <div class="mt-8 lg:mt-0 lg:col-span-4">
-        <div class="bg-white rounded-lg border border-gray-200 sticky top-8">
-          <div class="px-6 py-4 border-b border-gray-200">
-            <h2 class="text-lg font-medium text-gray-900">Order Summary</h2>
+        <div class="bg-white rounded-xl shadow-sm border border-gray-100 sticky top-8">
+          <div class="px-6 py-5 border-b border-gray-100">
+            <h2 class="text-xl font-semibold text-gray-900">Order Summary</h2>
           </div>
 
           <div class="p-6">
@@ -203,9 +203,9 @@
                 <dd class="text-sm font-medium text-gray-900">${{ formatPrice(totalAmount * 0.1) }}</dd>
               </div>
 
-              <div class="border-t border-gray-200 pt-4 flex items-center justify-between">
-                <dt class="text-base font-medium text-gray-900">Order total</dt>
-                <dd class="text-base font-medium text-gray-900">${{ formatPrice(totalAmount * 1.1) }}</dd>
+              <div class="border-t border-gray-100 pt-4 flex items-center justify-between">
+                <dt class="text-lg font-semibold text-gray-900">Order total</dt>
+                <dd class="text-lg font-semibold text-gray-900">${{ formatPrice(totalAmount * 1.1) }}</dd>
               </div>
             </div>
 
@@ -220,13 +220,13 @@
                 Proceed to Checkout
               </BaseButton>
 
-              <p v-if="!isAuthenticated" class="mt-2 text-xs text-center text-gray-500">
-                Please <router-link to="/login" class="text-gray-900 hover:text-gray-700">sign in</router-link> to checkout
+              <p v-if="!isAuthenticated" class="mt-2 text-sm text-center text-gray-600">
+                Please <router-link to="/login" class="text-black hover:text-gray-700 font-medium transition-colors duration-200">sign in</router-link> to checkout
               </p>
             </div>
 
             <!-- Promo Code -->
-            <div class="mt-6 border-t border-gray-200 pt-6">
+            <div class="mt-6 border-t border-gray-100 pt-6">
               <label for="promo-code" class="block text-sm font-medium text-gray-700">
                 Promo code
               </label>
@@ -236,7 +236,7 @@
                   v-model="promoCode"
                   type="text"
                   placeholder="Enter promo code"
-                  class="flex-1 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gray-900 focus:border-transparent text-sm"
+                  class="flex-1 px-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-black text-sm"
                 >
                 <BaseButton
                   variant="outline"

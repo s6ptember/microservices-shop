@@ -18,6 +18,7 @@ class ProxyView(View):
         # Логируем запрос
         logger.info(f"Gateway request: {request.method} {request.path}")
         logger.info(f"Headers: {dict(request.headers)}")
+        logger.info(f"Body: {request.body.decode('utf-8') if request.body else 'No body'}")
 
         # Определяем целевой сервис
         service_name = self.get_service_name(request)
@@ -57,7 +58,11 @@ class ProxyView(View):
 
     def get_target_path(self, request):
         """Формирование пути для целевого сервиса"""
-        return request.path
+        # Убираем префикс /api если он есть и добавляем обратно для сервиса
+        path = request.path
+        if path.startswith('/api/'):
+            return path  # Оставляем как есть
+        return path
 
     def proxy_request(self, request, target_url):
         """Проксирование HTTP запроса"""
@@ -88,8 +93,9 @@ class ProxyView(View):
 
                 if 'application/json' in content_type:
                     try:
-                        json_data = json.loads(request.body.decode('utf-8'))
-                        logger.info(f"JSON data: {json_data}")
+                        if request.body:
+                            json_data = json.loads(request.body.decode('utf-8'))
+                            logger.info(f"JSON data: {json_data}")
                     except (json.JSONDecodeError, UnicodeDecodeError) as e:
                         logger.error(f"Failed to parse JSON: {e}")
                         data = request.body
@@ -113,7 +119,7 @@ class ProxyView(View):
             )
 
             logger.info(f"Response status: {response.status_code}")
-            logger.info(f"Response headers: {dict(response.headers)}")
+            logger.info(f"Response content: {response.text[:200]}...")  # Логируем первые 200 символов
 
             # Возвращаем ответ
             django_response = HttpResponse(

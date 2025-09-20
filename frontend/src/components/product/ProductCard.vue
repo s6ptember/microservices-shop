@@ -1,7 +1,7 @@
 <template>
-  <div class="card h-full hover:shadow-lg transition-shadow duration-300 group">
+  <div class="bg-white h-full rounded-xl shadow-md hover:shadow-xl transition-shadow duration-300 group border border-gray-200">
     <!-- Product Image -->
-    <div class="relative overflow-hidden">
+    <div class="relative overflow-hidden rounded-t-xl">
       <ProductImage
         :product="product"
         size="md"
@@ -10,7 +10,7 @@
 
       <!-- Stock Badge -->
       <div v-if="!product.is_in_stock" class="absolute top-2 left-2">
-        <span class="px-2 py-1 bg-red-100 text-red-800 text-xs font-medium rounded-full">
+        <span class="px-2 py-1 bg-red-100 text-red-600 text-xs font-medium rounded-full">
           Out of Stock
         </span>
       </div>
@@ -22,6 +22,7 @@
             variant="secondary"
             size="sm"
             @click="viewProduct"
+            class="bg-white text-black hover:bg-gray-100 focus:ring-black"
           >
             <template #icon>
               <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -36,6 +37,7 @@
             size="sm"
             :disabled="!product.is_in_stock"
             @click="addToCart"
+            class="bg-black text-white hover:bg-gray-800 focus:ring-black"
           >
             <template #icon>
               <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -48,14 +50,14 @@
     </div>
 
     <!-- Product Info -->
-    <div class="card-body">
+    <div class="p-4">
       <!-- Category -->
       <div class="mb-2">
         <span class="text-sm text-gray-500">{{ product.category_name }}</span>
       </div>
 
       <!-- Product Name -->
-      <h3 class="text-lg font-semibold text-gray-900 mb-2 line-clamp-2 group-hover:text-gray-700 transition-colors">
+      <h3 class="text-lg font-semibold text-black mb-2 line-clamp-2 group-hover:text-gray-700 transition-colors">
         <router-link :to="`/products/${product.id}`">
           {{ product.name }}
         </router-link>
@@ -69,7 +71,7 @@
       <!-- Price and Stock -->
       <div class="flex items-center justify-between">
         <div>
-          <span class="text-2xl font-bold text-gray-900">${{ formatPrice(product.price) }}</span>
+          <span class="text-xl font-bold text-black">${{ formatPrice(product.price) }}</span>
         </div>
         <div class="text-sm text-gray-500">
           {{ product.stock_quantity }} in stock
@@ -78,12 +80,12 @@
     </div>
 
     <!-- Card Footer -->
-    <div class="card-footer">
+    <div class="p-4 border-t border-gray-200">
       <div class="flex space-x-2">
         <BaseButton
           variant="outline"
           size="sm"
-          class="flex-1"
+          class="flex-1 border-black text-black hover:bg-gray-100 focus:ring-black"
           @click="viewProduct"
         >
           View Details
@@ -92,7 +94,7 @@
         <BaseButton
           variant="primary"
           size="sm"
-          class="flex-1"
+          class="flex-1 bg-black text-white hover:bg-gray-800 focus:ring-black"
           :disabled="!product.is_in_stock"
           :loading="addingToCart"
           @click="addToCart"

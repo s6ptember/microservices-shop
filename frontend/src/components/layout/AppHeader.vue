@@ -6,10 +6,10 @@
         <!-- Logo -->
         <div class="flex items-center">
           <router-link to="/" class="flex items-center space-x-2">
-            <div class="w-8 h-8 bg-gray-900 rounded-lg flex items-center justify-center">
+            <div class="w-8 h-8 bg-black rounded-lg flex items-center justify-center">
               <span class="text-white font-bold text-sm">MS</span>
             </div>
-            <span class="text-xl font-bold text-gray-900">MicroShop</span>
+            <span class="text-xl font-bold text-black">MicroShop</span>
           </router-link>
         </div>
 
@@ -17,15 +17,15 @@
         <nav class="hidden md:flex items-center space-x-8">
           <router-link
             to="/"
-            class="text-gray-700 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium transition-colors"
-            :class="{ 'text-gray-900 font-semibold': $route.name === 'home' }"
+            class="text-gray-600 hover:text-black px-3 py-2 rounded-md text-sm font-medium transition-colors"
+            :class="{ 'text-black font-semibold': $route.name === 'home' }"
           >
             Home
           </router-link>
           <router-link
             to="/catalog"
-            class="text-gray-700 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium transition-colors"
-            :class="{ 'text-gray-900 font-semibold': $route.name === 'catalog' }"
+            class="text-gray-600 hover:text-black px-3 py-2 rounded-md text-sm font-medium transition-colors"
+            :class="{ 'text-black font-semibold': $route.name === 'catalog' }"
           >
             Catalog
           </router-link>
@@ -39,7 +39,7 @@
               v-model="searchQuery"
               @keyup.enter="handleSearch"
               placeholder="Search products..."
-              class="w-full px-4 py-2 pl-10 pr-4 text-gray-700 bg-gray-100 border border-transparent rounded-lg focus:outline-none focus:bg-white focus:border-gray-300 focus:ring-2 focus:ring-gray-900 transition-all duration-200"
+              class="w-full px-4 py-2 pl-10 pr-4 text-gray-700 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:bg-white focus:border-black focus:ring-2 focus:ring-black transition-all duration-200"
             >
             <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
               <svg class="h-5 w-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -59,14 +59,14 @@
           <!-- Cart Icon -->
           <router-link
             to="/cart"
-            class="relative p-2 text-gray-700 hover:text-gray-900 transition-colors group"
+            class="relative p-2 text-gray-600 hover:text-black transition-colors group"
           >
             <svg class="h-6 w-6 group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4m0 0L7 13m0 0l-2.5 5M7 13l-2.5 5m0 0h10.5" />
             </svg>
             <span
               v-if="cartItemsCount > 0"
-              class="absolute -top-1 -right-1 bg-gray-900 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center animate-pulse"
+              class="absolute -top-1 -right-1 bg-black text-white text-xs rounded-full h-5 w-5 flex items-center justify-center animate-pulse"
             >
               {{ cartItemsCount > 99 ? '99+' : cartItemsCount }}
             </span>
@@ -76,7 +76,7 @@
           <div v-if="isAuthenticated" class="relative" ref="userMenu">
             <button
               @click="showUserMenu = !showUserMenu"
-              class="flex items-center space-x-2 p-2 text-gray-700 hover:text-gray-900 focus:outline-none transition-colors"
+              class="flex items-center space-x-2 p-2 text-gray-600 hover:text-black focus:outline-none transition-colors"
             >
               <div class="w-8 h-8 bg-gray-200 rounded-full flex items-center justify-center">
                 <svg class="h-5 w-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -94,7 +94,7 @@
               <div v-if="showUserMenu" class="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg border border-gray-200 py-1">
                 <router-link
                   to="/profile"
-                  class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors"
+                  class="block px-4 py-2 text-sm text-gray-600 hover:bg-gray-100 hover:text-black transition-colors"
                   @click="showUserMenu = false"
                 >
                   <div class="flex items-center">
@@ -106,7 +106,7 @@
                 </router-link>
                 <router-link
                   to="/cart"
-                  class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors"
+                  class="block px-4 py-2 text-sm text-gray-600 hover:bg-gray-100 hover:text-black transition-colors"
                   @click="showUserMenu = false"
                 >
                   <div class="flex items-center">
@@ -114,14 +114,14 @@
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4m0 0L7 13m0 0l-2.5 5M7 13l-2.5 5m0 0h10.5" />
                     </svg>
                     My Cart
-                    <span v-if="cartItemsCount > 0" class="ml-auto bg-gray-900 text-white text-xs rounded-full px-2 py-1">
+                    <span v-if="cartItemsCount > 0" class="ml-auto bg-black text-white text-xs rounded-full px-2 py-1">
                       {{ cartItemsCount }}
                     </span>
                   </div>
                 </router-link>
                 <router-link
                   to="/orders"
-                  class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors"
+                  class="block px-4 py-2 text-sm text-gray-600 hover:bg-gray-100 hover:text-black transition-colors"
                   @click="showUserMenu = false"
                 >
                   <div class="flex items-center">
@@ -134,7 +134,7 @@
                 <div class="border-t border-gray-100 my-1"></div>
                 <button
                   @click="handleLogout"
-                  class="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors"
+                  class="block w-full text-left px-4 py-2 text-sm text-gray-600 hover:bg-gray-100 hover:text-black transition-colors"
                 >
                   <div class="flex items-center">
                     <svg class="w-4 h-4 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -151,13 +151,13 @@
           <div v-else class="flex items-center space-x-2">
             <router-link
               to="/login"
-              class="px-4 py-2 text-sm font-medium text-gray-700 hover:text-gray-900 transition-colors"
+              class="px-4 py-2 text-sm font-medium text-gray-600 hover:text-black transition-colors"
             >
               Sign in
             </router-link>
             <router-link
               to="/register"
-              class="btn-primary text-sm px-4 py-2"
+              class="px-4 py-2 text-sm font-medium bg-black text-white rounded-md hover:bg-gray-800 transition-colors"
             >
               Sign up
             </router-link>
@@ -166,7 +166,7 @@
           <!-- Mobile menu button -->
           <button
             @click="showMobileMenu = !showMobileMenu"
-            class="md:hidden p-2 text-gray-700 hover:text-gray-900 focus:outline-none transition-colors"
+            class="md:hidden p-2 text-gray-600 hover:text-black focus:outline-none transition-colors"
           >
             <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path v-if="!showMobileMenu" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
@@ -182,14 +182,14 @@
           <div class="space-y-1">
             <router-link
               to="/"
-              class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors"
+              class="block px-3 py-2 text-base font-medium text-gray-600 hover:text-black hover:bg-gray-100 rounded-md transition-colors"
               @click="showMobileMenu = false"
             >
               Home
             </router-link>
             <router-link
               to="/catalog"
-              class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors"
+              class="block px-3 py-2 text-base font-medium text-gray-600 hover:text-black hover:bg-gray-100 rounded-md transition-colors"
               @click="showMobileMenu = false"
             >
               Catalog
@@ -202,18 +202,18 @@
                 v-model="searchQuery"
                 @keyup.enter="handleSearch"
                 placeholder="Search products..."
-                class="w-full px-4 py-2 text-gray-700 bg-gray-100 border border-transparent rounded-lg focus:outline-none focus:bg-white focus:border-gray-300 focus:ring-2 focus:ring-gray-900 transition-all duration-200"
+                class="w-full px-4 py-2 text-gray-700 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:bg-white focus:border-black focus:ring-2 focus:ring-black transition-all duration-200"
               >
             </div>
 
             <!-- Mobile Cart Link -->
             <router-link
               to="/cart"
-              class="flex items-center justify-between px-3 py-2 text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors"
+              class="flex items-center justify-between px-3 py-2 text-base font-medium text-gray-600 hover:text-black hover:bg-gray-100 rounded-md transition-colors"
               @click="showMobileMenu = false"
             >
               <span>Shopping Cart</span>
-              <span v-if="cartItemsCount > 0" class="bg-gray-900 text-white text-xs rounded-full px-2 py-1">
+              <span v-if="cartItemsCount > 0" class="bg-black text-white text-xs rounded-full px-2 py-1">
                 {{ cartItemsCount }}
               </span>
             </router-link>
@@ -222,14 +222,14 @@
             <div v-if="!isAuthenticated" class="border-t border-gray-200 pt-4 mt-4">
               <router-link
                 to="/login"
-                class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors"
+                class="block px-3 py-2 text-base font-medium text-gray-600 hover:text-black hover:bg-gray-100 rounded-md transition-colors"
                 @click="showMobileMenu = false"
               >
                 Sign in
               </router-link>
               <router-link
                 to="/register"
-                class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors"
+                class="block px-3 py-2 text-base font-medium text-gray-600 hover:text-black hover:bg-gray-100 rounded-md transition-colors"
                 @click="showMobileMenu = false"
               >
                 Create account
@@ -240,14 +240,14 @@
             <div v-else class="border-t border-gray-200 pt-4 mt-4">
               <router-link
                 to="/profile"
-                class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors"
+                class="block px-3 py-2 text-base font-medium text-gray-600 hover:text-black hover:bg-gray-100 rounded-md transition-colors"
                 @click="showMobileMenu = false"
               >
                 Profile
               </router-link>
               <button
                 @click="handleLogout"
-                class="block w-full text-left px-3 py-2 text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors"
+                class="block w-full text-left px-3 py-2 text-base font-medium text-gray-600 hover:text-black hover:bg-gray-100 rounded-md transition-colors"
               >
                 Sign out
               </button>

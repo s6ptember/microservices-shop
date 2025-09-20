@@ -1,11 +1,11 @@
 <!-- frontend/src/views/CatalogView.vue -->
 <template>
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
     <!-- Header -->
-    <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between mb-8">
+    <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between mb-10">
       <div>
-        <h1 class="text-3xl font-bold text-gray-900 mb-2">Product Catalog</h1>
-        <p class="text-gray-600">Discover our amazing collection of products</p>
+        <h1 class="text-4xl font-extrabold text-gray-900 mb-3">Product Catalog</h1>
+        <p class="text-gray-600 text-lg">Discover our amazing collection of products</p>
       </div>
       <div class="mt-4 lg:mt-0">
         <p class="text-sm text-gray-500">
@@ -17,8 +17,8 @@
     <div class="lg:grid lg:grid-cols-4 lg:gap-8">
       <!-- Filters Sidebar -->
       <div class="lg:col-span-1">
-        <div class="bg-white rounded-lg border border-gray-200 p-6 sticky top-8">
-          <h3 class="text-lg font-semibold text-gray-900 mb-4">Filters</h3>
+        <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 sticky top-8">
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Filters</h3>
 
           <!-- Search -->
           <div class="mb-6">
@@ -27,7 +27,7 @@
               v-model="searchQuery"
               type="text"
               placeholder="Search products..."
-              class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gray-900 focus:border-transparent"
+              class="w-full px-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-black text-sm"
               @keyup.enter="applyFilters"
             >
           </div>
@@ -37,7 +37,7 @@
             <label class="block text-sm font-medium text-gray-700 mb-2">Category</label>
             <select
               v-model="selectedCategory"
-              class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gray-900 focus:border-transparent"
+              class="w-full px-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-black text-sm"
               @change="applyFilters"
             >
               <option value="">All Categories</option>
@@ -55,14 +55,14 @@
                 v-model="priceRange.min"
                 type="number"
                 placeholder="Min"
-                class="px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gray-900 focus:border-transparent"
+                class="px-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-black text-sm"
                 @blur="applyFilters"
               >
               <input
                 v-model="priceRange.max"
                 type="number"
                 placeholder="Max"
-                class="px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gray-900 focus:border-transparent"
+                class="px-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-black text-sm"
                 @blur="applyFilters"
               >
             </div>
@@ -74,7 +74,7 @@
               <input
                 v-model="inStockOnly"
                 type="checkbox"
-                class="rounded border-gray-300 text-gray-900 focus:ring-gray-900 focus:ring-offset-0"
+                class="rounded border-gray-200 text-black focus:ring-black focus:ring-offset-0"
                 @change="applyFilters"
               >
               <span class="ml-2 text-sm text-gray-700">In stock only</span>
@@ -86,7 +86,7 @@
             <label class="block text-sm font-medium text-gray-700 mb-2">Sort By</label>
             <select
               v-model="sortBy"
-              class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gray-900 focus:border-transparent"
+              class="w-full px-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-black text-sm"
               @change="applyFilters"
             >
               <option value="-created_at">Newest First</option>
@@ -113,7 +113,7 @@
       <!-- Products Grid -->
       <div class="lg:col-span-3 mt-8 lg:mt-0">
         <!-- Loading State -->
-        <div v-if="loading" class="flex justify-center py-12">
+        <div v-if="loading" class="flex justify-center py-16">
           <LoadingSpinner size="lg" text="Loading products..." />
         </div>
 
@@ -128,12 +128,12 @@
         </div>
 
         <!-- Empty State -->
-        <div v-else class="text-center py-12">
-          <svg class="mx-auto h-12 w-12 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <div v-else class="text-center py-16 bg-white rounded-xl shadow-sm">
+          <svg class="mx-auto h-16 w-16 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
           </svg>
-          <h3 class="mt-2 text-sm font-medium text-gray-900">No products found</h3>
-          <p class="mt-1 text-sm text-gray-500">Try adjusting your search or filter criteria.</p>
+          <h3 class="mt-3 text-xl font-semibold text-gray-900">No products found</h3>
+          <p class="mt-2 text-sm text-gray-500">Try adjusting your search or filter criteria.</p>
           <div class="mt-6">
             <BaseButton variant="primary" @click="clearFilters">
               Clear Filters
@@ -144,7 +144,7 @@
         <!-- Pagination -->
         <div v-if="totalPages > 1" class="mt-8 flex items-center justify-between">
           <div class="flex items-center">
-            <p class="text-sm text-gray-700">
+            <p class="text-sm text-gray-600">
               Showing
               <span class="font-medium">{{ startItem }}</span>
               to
@@ -171,10 +171,10 @@
                 :key="page"
                 @click="changePage(page)"
                 :class="[
-                  'px-3 py-2 text-sm font-medium rounded-md transition-colors',
+                  'px-4 py-2 text-sm font-medium rounded-lg transition-colors duration-200',
                   page === currentPage
-                    ? 'bg-gray-900 text-white'
-                    : 'text-gray-700 hover:bg-gray-100'
+                    ? 'bg-black text-white'
+                    : 'text-gray-600 hover:bg-gray-100'
                 ]"
               >
                 {{ page }}

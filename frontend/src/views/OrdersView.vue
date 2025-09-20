@@ -1,26 +1,26 @@
 <!-- frontend/src/views/OrdersView.vue -->
 <template>
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
     <!-- Header -->
     <div class="mb-8">
       <h1 class="text-3xl font-bold text-gray-900">My Orders</h1>
-      <p class="mt-1 text-gray-600">Track and manage your orders</p>
+      <p class="mt-2 text-sm text-gray-500">Track and manage your orders</p>
     </div>
 
     <!-- Loading State -->
-    <div v-if="loading" class="flex justify-center py-12">
+    <div v-if="loading" class="flex justify-center py-16">
       <LoadingSpinner size="lg" text="Loading orders..." />
     </div>
 
     <!-- Empty State -->
-    <div v-else-if="orders.length === 0" class="text-center py-12">
+    <div v-else-if="orders.length === 0" class="text-center py-16">
       <svg class="mx-auto h-12 w-12 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
       </svg>
-      <h3 class="mt-2 text-lg font-medium text-gray-900">No orders yet</h3>
-      <p class="mt-1 text-gray-500">Start shopping to see your orders here.</p>
+      <h3 class="mt-4 text-lg font-semibold text-gray-900">No orders yet</h3>
+      <p class="mt-2 text-sm text-gray-500">Start shopping to see your orders here.</p>
       <div class="mt-6">
-        <BaseButton variant="primary" @click="$router.push('/catalog')">
+        <BaseButton variant="primary" @click="$router.push('/catalog')" class="bg-gray-900 text-white hover:bg-gray-800">
           Start Shopping
         </BaseButton>
       </div>
@@ -31,16 +31,16 @@
       <div
         v-for="order in orders"
         :key="order.id"
-        class="bg-white rounded-lg border border-gray-200 shadow-sm overflow-hidden"
+        class="bg-white rounded-lg shadow-sm border border-gray-100 overflow-hidden"
       >
         <!-- Order Header -->
-        <div class="px-6 py-4 border-b border-gray-200 bg-gray-50">
+        <div class="px-6 py-4 border-b border-gray-100 bg-gray-50">
           <div class="flex items-center justify-between">
             <div>
               <h3 class="text-lg font-semibold text-gray-900">
                 Order #{{ order.id }}
               </h3>
-              <p class="text-sm text-gray-500">
+              <p class="text-sm text-gray-500 mt-1">
                 Placed on {{ formatDate(order.created_at) }}
               </p>
             </div>
@@ -48,7 +48,7 @@
               <p class="text-lg font-semibold text-gray-900">
                 ${{ formatPrice(order.total_amount) }}
               </p>
-              <span :class="getStatusClasses(order.status)">
+              <span :class="getStatusClasses(order.status)" class="inline-block px-3 py-1 rounded-full text-sm font-medium">
                 {{ getStatusText(order.status) }}
               </span>
             </div>
@@ -57,29 +57,29 @@
 
         <!-- Order Items -->
         <div class="px-6 py-4">
-          <h4 class="text-sm font-medium text-gray-900 mb-3">Items ({{ order.items_count }})</h4>
+          <h4 class="text-sm font-semibold text-gray-900 mb-3">Items ({{ order.items_count }})</h4>
           <div class="space-y-3">
             <div
               v-for="item in order.items"
               :key="item.id"
-              class="flex items-center space-x-4"
+              class="flex items-center space-x-4 hover:bg-gray-50 transition-colors"
             >
               <div class="flex-shrink-0">
                 <ProductImage
                   :product="getProductForItem(item)"
                   size="sm"
-                  container-class="w-12 h-12 rounded-lg"
+                  container-class="w-12 h-12 rounded-md"
                 />
               </div>
               <div class="flex-1 min-w-0">
-                <p class="text-sm font-medium text-gray-900 truncate">
+                <p class="text-sm font-semibold text-gray-900 truncate">
                   {{ item.product_name }}
                 </p>
-                <p class="text-sm text-gray-500">
+                <p class="text-sm text-gray-500 mt-1">
                   Qty: {{ item.quantity }} × ${{ formatPrice(item.price) }}
                 </p>
               </div>
-              <div class="text-sm font-medium text-gray-900">
+              <div class="text-sm font-semibold text-gray-900">
                 ${{ formatPrice(item.subtotal) }}
               </div>
             </div>
@@ -87,7 +87,7 @@
         </div>
 
         <!-- Order Footer -->
-        <div class="px-6 py-4 border-t border-gray-200 bg-gray-50">
+        <div class="px-6 py-4 border-t border-gray-100 bg-gray-50">
           <div class="flex items-center justify-between">
             <div class="text-sm text-gray-500">
               <p><strong>Shipping Address:</strong></p>
@@ -98,6 +98,7 @@
                 variant="outline"
                 size="sm"
                 @click="viewOrderDetails(order.id)"
+                class="border-gray-900 text-gray-900 hover:bg-gray-900 hover:text-white"
               >
                 View Details
               </BaseButton>
@@ -106,6 +107,7 @@
                 variant="ghost"
                 size="sm"
                 @click="cancelOrder(order.id)"
+                class="text-gray-600 hover:text-gray-900"
               >
                 Cancel Order
               </BaseButton>
@@ -123,6 +125,7 @@
           size="sm"
           :disabled="currentPage === 1"
           @click="changePage(currentPage - 1)"
+          class="border-gray-900 text-gray-900 hover:bg-gray-900 hover:text-white"
         >
           Previous
         </BaseButton>
@@ -136,7 +139,7 @@
               'px-3 py-2 text-sm font-medium rounded-md transition-colors',
               page === currentPage
                 ? 'bg-gray-900 text-white'
-                : 'text-gray-700 hover:bg-gray-100'
+                : 'text-gray-600 hover:bg-gray-100'
             ]"
           >
             {{ page }}
@@ -148,6 +151,7 @@
           size="sm"
           :disabled="currentPage === totalPages"
           @click="changePage(currentPage + 1)"
+          class="border-gray-900 text-gray-900 hover:bg-gray-900 hover:text-white"
         >
           Next
         </BaseButton>

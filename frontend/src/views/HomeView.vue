@@ -2,19 +2,19 @@
 <template>
   <div class="min-h-screen">
     <!-- Hero Section -->
-    <section class="bg-gradient-to-r from-gray-900 to-gray-700 text-white py-20">
+    <section class="bg-white text-gray-900 py-20">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center">
-          <h1 class="text-4xl md:text-6xl font-bold mb-6">
+          <h1 class="text-5xl md:text-6xl font-extrabold text-gray-900 mb-6">
             Welcome to MicroShop
           </h1>
-          <p class="text-xl md:text-2xl mb-8 text-gray-300 max-w-3xl mx-auto">
+          <p class="text-xl md:text-2xl mb-8 text-gray-600 max-w-3xl mx-auto">
             Discover amazing products with our modern microservices-powered shopping experience.
             Fast, secure, and reliable.
           </p>
           <div class="flex flex-col sm:flex-row gap-4 justify-center">
             <BaseButton
-              variant="secondary"
+              variant="primary"
               size="lg"
               @click="$router.push('/catalog')"
             >
@@ -33,11 +33,11 @@
     </section>
 
     <!-- Features Section -->
-    <section class="py-16 bg-white">
+    <section class="py-16 bg-gray-50">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center mb-12">
-          <h2 class="text-3xl font-bold text-gray-900 mb-4">Why Choose MicroShop?</h2>
-          <p class="text-gray-600 max-w-2xl mx-auto">
+          <h2 class="text-4xl font-extrabold text-gray-900 mb-4">Why Choose MicroShop?</h2>
+          <p class="text-gray-600 text-lg max-w-2xl mx-auto">
             Built with modern microservices architecture for the best shopping experience
           </p>
         </div>
@@ -77,12 +77,12 @@
     </section>
 
     <!-- Featured Products Section -->
-    <section class="py-16 bg-gray-50">
+    <section class="py-16 bg-white">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex items-center justify-between mb-12">
           <div>
-            <h2 class="text-3xl font-bold text-gray-900 mb-2">Featured Products</h2>
-            <p class="text-gray-600">Discover our most popular items</p>
+            <h2 class="text-4xl font-extrabold text-gray-900 mb-3">Featured Products</h2>
+            <p class="text-gray-600 text-lg">Discover our most popular items</p>
           </div>
           <BaseButton
             variant="outline"
@@ -93,7 +93,7 @@
         </div>
 
         <!-- Loading State -->
-        <div v-if="productsLoading" class="flex justify-center py-12">
+        <div v-if="productsLoading" class="flex justify-center py-16">
           <LoadingSpinner size="lg" text="Loading products..." />
         </div>
 
@@ -108,22 +108,22 @@
         </div>
 
         <!-- Empty State -->
-        <div v-if="!productsLoading && featuredProducts.length === 0" class="text-center py-12">
-          <p class="text-gray-500">No featured products available at the moment.</p>
+        <div v-if="!productsLoading && featuredProducts.length === 0" class="text-center py-16 bg-white rounded-xl shadow-sm">
+          <p class="text-gray-600 text-lg">No featured products available at the moment.</p>
         </div>
       </div>
     </section>
 
     <!-- CTA Section -->
-    <section class="py-16 bg-gray-900 text-white">
+    <section class="py-16 bg-gray-50 text-gray-900">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <h2 class="text-3xl font-bold mb-4">Ready to Start Shopping?</h2>
-        <p class="text-gray-300 mb-8 max-w-2xl mx-auto">
+        <h2 class="text-4xl font-extrabold text-gray-900 mb-4">Ready to Start Shopping?</h2>
+        <p class="text-gray-600 text-lg mb-8 max-w-2xl mx-auto">
           Join thousands of satisfied customers who trust MicroShop for their online shopping needs.
         </p>
         <div class="flex flex-col sm:flex-row gap-4 justify-center">
           <BaseButton
-            variant="secondary"
+            variant="primary"
             size="lg"
             @click="$router.push('/register')"
           >

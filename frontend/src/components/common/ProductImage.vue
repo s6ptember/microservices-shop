@@ -3,7 +3,8 @@
   <div
     :class="[
       'flex items-center justify-center rounded-lg overflow-hidden',
-      containerClass
+      containerClass,
+      hasValidImage && !imageError ? '' : 'bg-gray-100'
     ]"
     :style="{ backgroundColor: bgColor }"
   >
@@ -21,11 +22,11 @@
     <div v-else class="text-center flex flex-col items-center justify-center h-full">
       <i
         :class="iconClass"
-        :style="{ fontSize: iconSize + 'px', color: iconColor }"
+        :style="{ fontSize: iconSize + 'px', color: iconColor || '#6B7280' }"
       ></i>
       <div
         v-if="showLabel && size !== 'sm'"
-        class="mt-2 text-white font-medium text-center px-2"
+        class="mt-2 text-gray-700 font-medium text-center px-2"
         :style="{ fontSize: labelSize + 'px' }"
       >
         {{ truncatedProductName }}

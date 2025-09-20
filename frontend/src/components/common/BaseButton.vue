@@ -2,11 +2,20 @@
   <button
     :type="type"
     :disabled="disabled || loading"
-    :class="buttonClasses"
+    :class="[
+      'inline-flex items-center justify-center px-4 py-2 rounded-md font-medium transition-all duration-200',
+      disabled || loading ? 'opacity-50 cursor-not-allowed' : 'hover:shadow-md',
+      variant === 'primary' ? 'bg-black text-white hover:bg-gray-800 focus:ring-2 focus:ring-black focus:ring-offset-2' :
+      variant === 'secondary' ? 'bg-white text-black border border-black hover:bg-gray-100 focus:ring-2 focus:ring-black focus:ring-offset-2' :
+      variant === 'outline' ? 'border border-black text-black hover:bg-gray-100 focus:ring-2 focus:ring-black focus:ring-offset-2' :
+      'bg-gray-200 text-black hover:bg-gray-300 focus:ring-2 focus:ring-black focus:ring-offset-2',
+      size === 'sm' ? 'text-sm px-3 py-1' : size === 'lg' ? 'text-base px-6 py-3' : 'text-base px-4 py-2',
+      block ? 'w-full' : ''
+    ]"
     @click="handleClick"
   >
     <div class="flex items-center justify-center space-x-2">
-      <div v-if="loading" class="spinner"></div>
+      <div v-if="loading" class="animate-spin h-5 w-5 border-2 border-t-black rounded-full"></div>
       <slot v-else name="icon" />
       <span v-if="$slots.default || text">{{ text }}</span>
       <slot />

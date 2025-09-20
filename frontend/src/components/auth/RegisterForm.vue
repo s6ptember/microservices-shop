@@ -1,12 +1,12 @@
 <!-- frontend/src/components/auth/RegisterForm.vue -->
 <template>
-  <div class="card max-w-md mx-auto">
-    <div class="card-header">
-      <h2 class="text-2xl font-bold text-gray-900">Create Account</h2>
-      <p class="text-gray-600 mt-2">Join MicroShop and start shopping today!</p>
+  <div class="bg-white max-w-md mx-auto p-6 rounded-xl shadow-lg border border-gray-200">
+    <div class="mb-6">
+      <h2 class="text-2xl font-bold text-black">Create Account</h2>
+      <p class="text-gray-500 mt-2 text-sm">Join MicroShop and start shopping today!</p>
     </div>
 
-    <form @submit.prevent="handleSubmit" class="card-body space-y-6">
+    <form @submit.prevent="handleSubmit" class="space-y-5">
       <!-- Email Field -->
       <BaseInput
         v-model="formData.email"
@@ -90,7 +90,7 @@
           <button
             type="button"
             @click="showPassword = !showPassword"
-            class="text-gray-400 hover:text-gray-600 focus:outline-none"
+            class="text-gray-400 hover:text-black focus:outline-none"
           >
             <svg v-if="showPassword" class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
@@ -121,7 +121,7 @@
           <button
             type="button"
             @click="showConfirmPassword = !showConfirmPassword"
-            class="text-gray-400 hover:text-gray-600 focus:outline-none"
+            class="text-gray-400 hover:text-black focus:outline-none"
           >
             <svg v-if="showConfirmPassword" class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
@@ -135,28 +135,28 @@
       </BaseInput>
 
       <!-- Terms and Conditions -->
-      <div class="flex items-start">
+      <div class="flex items-start text-sm">
         <div class="flex items-center h-5">
           <input
             id="terms"
             v-model="formData.agree_terms"
             type="checkbox"
-            class="focus:ring-gray-900 h-4 w-4 text-gray-900 border-gray-300 rounded"
+            class="h-4 w-4 text-black focus:ring-black border-gray-300 rounded"
           >
         </div>
-        <div class="ml-3 text-sm">
+        <div class="ml-3">
           <label for="terms" class="text-gray-700">
             I agree to the
-            <a href="#" class="text-gray-900 hover:text-gray-700 font-medium">Terms and Conditions</a>
+            <a href="#" class="text-black hover:text-gray-700 font-medium">Terms and Conditions</a>
             and
-            <a href="#" class="text-gray-900 hover:text-gray-700 font-medium">Privacy Policy</a>
+            <a href="#" class="text-black hover:text-gray-700 font-medium">Privacy Policy</a>
           </label>
         </div>
       </div>
-      <div v-if="errors.agree_terms" class="form-error">{{ errors.agree_terms }}</div>
+      <div v-if="errors.agree_terms" class="text-red-600 text-sm">{{ errors.agree_terms }}</div>
 
       <!-- Error Message -->
-      <div v-if="errors.general" class="p-3 bg-red-50 border border-red-200 rounded-lg">
+      <div v-if="errors.general" class="p-3 bg-red-50 border border-red-200 rounded-md">
         <p class="text-red-600 text-sm">{{ errors.general }}</p>
       </div>
 
@@ -168,15 +168,16 @@
         :loading="loading"
         :disabled="!isFormValid"
         block
+        class="bg-black text-white hover:bg-gray-800 focus:ring-black"
       >
         Create Account
       </BaseButton>
 
       <!-- Sign In Link -->
-      <div class="text-center">
-        <p class="text-gray-600 text-sm">
+      <div class="text-center text-sm">
+        <p class="text-gray-600">
           Already have an account?
-          <router-link to="/login" class="text-gray-900 hover:text-gray-700 font-medium">
+          <router-link to="/login" class="text-black hover:text-gray-700 font-medium">
             Sign in here
           </router-link>
         </p>

@@ -2,8 +2,13 @@
   <transition name="slide-up">
     <div
       v-if="show"
-      :class="toastClasses"
-      class="fixed bottom-4 right-4 max-w-md w-full bg-white border border-gray-200 rounded-lg shadow-lg z-50"
+      :class="[
+        'fixed bottom-4 right-4 max-w-md w-full bg-white border border-gray-200 rounded-lg shadow-lg z-50',
+        type === 'success' ? 'border-green-200' :
+        type === 'error' ? 'border-red-200' :
+        type === 'warning' ? 'border-yellow-200' :
+        'border-blue-200'
+      ]"
     >
       <div class="p-4">
         <div class="flex items-start">
@@ -25,7 +30,7 @@
 
           <!-- Content -->
           <div class="ml-3 w-0 flex-1">
-            <p class="text-sm font-medium text-gray-900">
+            <p class="text-sm font-medium text-black">
               {{ message }}
             </p>
           </div>
@@ -34,7 +39,7 @@
           <div class="ml-4 flex-shrink-0 flex">
             <button
               @click="handleClose"
-              class="inline-flex text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500 rounded-md"
+              class="inline-flex text-gray-400 hover:text-black focus:outline-none focus:ring-2 focus:ring-black focus:ring-offset-2 rounded-md"
             >
               <span class="sr-only">Close</span>
               <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -48,8 +53,13 @@
       <!-- Progress Bar -->
       <div v-if="showProgressBar" class="h-1 bg-gray-100 rounded-b-lg overflow-hidden">
         <div
-          :class="progressBarClasses"
-          class="h-full transition-all duration-100 ease-linear"
+          :class="[
+            'h-full transition-all duration-100 ease-linear',
+            type === 'success' ? 'bg-green-500' :
+            type === 'error' ? 'bg-red-500' :
+            type === 'warning' ? 'bg-yellow-500' :
+            'bg-blue-500'
+          ]"
           :style="{ width: `${progressWidth}%` }"
         ></div>
       </div>
